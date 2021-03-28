@@ -1,3 +1,5 @@
+const linkResolver = require('./src/utils/linkResolver');
+
 module.exports = {
   siteMetadata: {
     title: "James Portfolio",
@@ -13,5 +15,16 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "james-blog",
+        linkResolver: () => (doc) => linkResolver(doc),
+        schemas: {
+          blog_post: require('./custom_types/blog_post.json')
+        },
+
+      }
+    }
   ],
 };

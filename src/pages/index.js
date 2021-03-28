@@ -3,7 +3,7 @@ import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 import { RichText, Date } from 'prismic-reactjs';
 
-export default function Home({ data }) {
+function Home({ data }) {
   console.log(data);
   return (
     <Layout>
@@ -15,6 +15,7 @@ export default function Home({ data }) {
           <div dangerouslySetInnerHTML={{ __html: node.data.title.html }}></div>
           <div>{Date(node.data.datetime).toString()}</div>
           <div dangerouslySetInnerHTML={{ __html: node.data.content.html }}></div>
+          <img src={node.data.image.url} height="50px" />
           </div>
         ) )}
       </div>
@@ -36,6 +37,9 @@ export const query = graphql`
               html
             }
             datetime
+            image {
+              url
+            }
           }
           uid
         }
@@ -43,3 +47,5 @@ export const query = graphql`
     }
   }
 `
+
+export default Home;

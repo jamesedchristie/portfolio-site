@@ -24,6 +24,9 @@
     },
     "datetime": {
       "type": "Timestamp"
+    },
+    "image": {
+      "type": "Image"
     }
   }
 }

@@ -4,23 +4,15 @@ import { graphql } from 'gatsby';
 import { RichText, Date } from 'prismic-reactjs';
 
 function Home({ data }) {
-  console.log(data);
+  // console.log(data);
   return (
     <Layout>
       <div>
-        <h2>Blog Posts</h2>
+        <h2>Home</h2>
         <br />
-        {data.allPrismicBlogPost.edges.map(({ node }) => (
-          <div>
-          <div dangerouslySetInnerHTML={{ __html: node.data.title.html }}></div>
-          <div>{Date(node.data.datetime).toString()}</div>
-          <div dangerouslySetInnerHTML={{ __html: node.data.content.html }}></div>
-          <img src={node.data.image.url} height="50px" />
-          </div>
-        ) )}
       </div>
     </Layout>
-  )
+  );
 }
 
 export const query = graphql`
@@ -32,6 +24,7 @@ export const query = graphql`
           data {
             title {
               html
+              raw
             }
             content {
               html
@@ -46,6 +39,8 @@ export const query = graphql`
       }
     }
   }
-`
+`;
+
+const styles = {};
 
 export default Home;

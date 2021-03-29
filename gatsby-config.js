@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-gatsby-cloud",
+    "gatsby-plugin-typescript",
     "gatsby-transformer-remark",
     {
       resolve: "gatsby-source-filesystem",
@@ -25,6 +26,31 @@ module.exports = {
         },
 
       }
-    }
+    },
+    // {
+    //   resolve: "gatsby-source-github",
+    //   options: {
+    //     headers: {
+    //       Authorization: `Bearer GITHUB_PAT_JAMESEDCHRISTIE`
+    //     },
+    //     queries: [
+    //       `{
+    //         repository(owner: "jamesedchristie", name: "ships-log") {
+    //           createdAt
+    //           description
+    //           homepageUrl
+    //           labels
+    //           name
+    //           object(expression: "master:README.md") {
+    //             ... on Blob {
+    //               text
+    //             }
+    //           }
+    //           url
+    //         }
+    //       }`
+    //     ]
+    //   }
+    // }
   ],
 };

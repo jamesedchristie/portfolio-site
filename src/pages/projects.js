@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import React from 'react';
 import Layout from '../components/layout';
 
@@ -16,8 +16,7 @@ export default function Projects({ data }) {
             <a href={repo.url} rel="noreferrer" target="_blank">F12 Go To Code</a>
             <strong>{repo.description}</strong>
             <i>{repo.createdAt}</i>
-            <div dangerouslySetInnerHTML={{ __html: readme.html }}>
-            </div>
+            <Link to={`/projects/${repo.name}/`}>View README</Link>
           </article>
         )
       })}

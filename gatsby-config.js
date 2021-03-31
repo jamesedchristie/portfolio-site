@@ -2,30 +2,42 @@ const linkResolver = require('./src/utils/linkResolver');
 
 module.exports = {
   siteMetadata: {
-    title: "James Portfolio",
+    title: 'James Portfolio',
   },
   plugins: [
-    "gatsby-plugin-gatsby-cloud",
-    "gatsby-plugin-typescript",
-    "gatsby-transformer-remark",
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-transformer-remark',
       options: {
-        name: "pages",
-        path: "./src/pages/",
-      },
-      __key: "pages",
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 500,
+            }
+          }
+        ]
+      }
     },
     {
-      resolve: "gatsby-source-prismic",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        repositoryName: "james-blog",
+        name: 'pages',
+        path: './src/pages/',
+      },
+      __key: 'pages',
+    },
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'james-blog',
         linkResolver: () => (doc) => linkResolver(doc),
         schemas: {
-          blog_post: require('./custom_types/blog_post.json')
+          blog_post: require('./custom_types/blog_post.json'),
         },
-
-      }
+      },
     },
     // {
     //   resolve: "gatsby-source-github",

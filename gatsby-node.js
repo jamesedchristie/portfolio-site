@@ -1,34 +1,64 @@
 const fetch = require('node-fetch');
+const { createFilePath } = require(`gatsby-source-filesystem`);
+const fs = require('fs');
+const path = require('path');
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
-require('gatsby-transformer-remark/')
+});
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
   const { createNode } = actions;
 
-  const reposToFetch = ['ships-log', 'histastrobio', 'portfolio-site', 'cs50'];
+  const personal = 'jamesedchristie', xrl = 'xrlcoach';
 
-  const repoQueries = reposToFetch.map(repo => `{
-    repository(owner: "jamesedchristie", name: "${repo}") {
-      createdAt
-      description
-      homepageUrl
-      name
-      object(expression: "main:README.md") {
-        ... on Blob {
-          text
-        }
-      }
-      url
+  const reposToFetch = [
+    {
+      'owner': personal,
+      'repo': 'ships-log',
+    },
+    {
+      'owner': personal,
+      'repo': 'histastrobio',
+    },
+    {
+      'owner': personal,
+      'repo': 'portfolio-site',
+    },
+    {
+      'owner': personal,
+      'repo': 'cs50',
+    }, 
+    {
+      'owner': xrl,
+      'repo': 'xrlcoach.github.io'
     }
-  }`);
+  ];
+  
+  const repoQueries = reposToFetch.map(({ owner, repo }) => {
+    return {
+      'query': `{
+        repository(owner: "${owner}", name: "${repo}") {
+          createdAt
+          description
+          homepageUrl
+          name
+          object(expression: "main:README.md") {
+            ... on Blob {
+              text
+            }
+          }
+          url
+        }
+      }`,
+      'auth': (owner === personal ? process.env.GITHUB_PAT_JAMESEDCHRISTIE : process.env.GITHUB_PAT_XRL)
+    }
+  });
 
   const processRepo = data => {
     let repoId = createNodeId(`repo-${data.data.repository.name}`);
     let readmeId = createNodeId(`${data.data.repository.name}-readme`);
     let repoMeta = {
-      id: createNodeId(`repo-${data.data.repository.name}`),
+      id: repoId,
       parent: null,
       children: [readmeId],
       internal: {
@@ -40,7 +70,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     };
     createNode(Object.assign({}, data, repoMeta));
     let readmeNode = {
-      id: createNodeId(`${data.data.repository.name}-readme`),
+      id: readmeId,
       parent: repoId,
       children: [],
       internal: {
@@ -48,16 +78,17 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
         mediaType: 'text/markdown',
         content: data.data.repository.object.text,
         contentDigest: createContentDigest(data.data.repository.object.text)
-      }
+      },
+      url: `projects/${data.data.repository.name}`
     };
     createNode(readmeNode);
   };
 
-  for (let query of repoQueries) {
+  for (let { query, auth } of repoQueries) {
     const response = await fetch('https://api.github.com/graphql', {
       method: 'POST',
       headers: {
-        Authorization: `bearer ${process.env.GITHUB_PAT_JAMESEDCHRISTIE}`
+        Authorization: `bearer ${auth}`
       },
       body: JSON.stringify({"query": query})
     });
@@ -65,4 +96,48 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     processRepo(data);
   };
   return;
+};
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
+  if (node.internal.type === `MarkdownRemark`) {
+    console.log("Got a markdown file");
+    let readme = getNode(node.parent);
+    const slug = readme.url;
+    console.log(slug);
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    });
+  }
+};
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const result = await graphql(`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/github-readme.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: node.fields.slug,
+      },
+    });
+  });
 };

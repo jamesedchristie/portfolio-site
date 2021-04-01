@@ -101,16 +101,24 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
-    console.log("Got a markdown file");
     let readme = getNode(node.parent);
-    const slug = readme.url;
-    console.log(slug);
+    let slug = readme.url;
+    
     createNodeField({
       node,
       name: `slug`,
       value: slug,
     });
   }
+  // if (node.internal.type === 'PrismicBlogPost') {
+  //   let text = String(node.data.content.text);
+  //   createNodeField({
+  //     node,
+  //     name: `excerpt`,
+  //     value: text.substring(0, 25),
+  //   });
+  //   console.log(node);
+  // }
 };
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -126,6 +134,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allPrismicBlogPost {
+        edges {
+          node {
+            url
+          }
+        }
+      }
     }
   `);
 
@@ -137,6 +152,18 @@ exports.createPages = async ({ graphql, actions }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         slug: node.fields.slug,
+      },
+    });
+  });
+
+  result.data.allPrismicBlogPost.edges.forEach(({ node }) => {
+    createPage({
+      path: node.url,
+      component: path.resolve(`./src/templates/blog-post.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        url: node.url,
       },
     });
   });

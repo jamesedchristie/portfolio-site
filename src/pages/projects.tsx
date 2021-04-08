@@ -1,49 +1,14 @@
 import { graphql, Link, PageProps } from 'gatsby';
 import React from 'react';
 import Layout from '../components/layout';
+import ProjectInfo from '../components/projectInfo';
 
-interface QueryData {
-  allGithubRepo: {
-    edges: {
-      node: {
-        data: {
-          repository: {
-            createdAt: string,
-            name: string,
-            url: string,
-            description: string,
-          }
-        },
-        childReadme: {
-          childMarkdownRemark: {
-            html: string
-          },
-        }
-      }
-    }[]
-  }
-}
-
-export default function Projects({ data }: { data: QueryData }) {
+export default function Projects({ data }: { data: GithubRepoData }) {
   // console.log(data);
   return (
-    <Layout>
+    <Layout currentPage='projects'>
       <h2>Projects</h2>
-      {data.allGithubRepo.edges.map(({ node }) => {
-        let repo = node.data.repository;
-        let readme = node.childReadme.childMarkdownRemark;
-        return (
-          <article>
-            <h3>{repo.name}</h3>
-            <a href={repo.url} rel="noreferrer" target="_blank">
-              F12 Go To Code
-            </a>
-            <strong>{repo.description}</strong>
-            <i>{repo.createdAt}</i>
-            <Link to={`/projects/${repo.name}/`}>View README</Link>
-          </article>
-        );
-      })}
+      {data.allGithubRepo.edges.map(({ node }) => <ProjectInfo repo={node.data.repository} />)}
     </Layout>
   );
 }
@@ -59,6 +24,7 @@ export const query = graphql`
               name
               url
               description
+              openGraphImageUrl
             }
           }
           childReadme {

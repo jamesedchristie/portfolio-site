@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 export default function About() {
   return (
-    <Layout>
+    <Layout currentPage='about'>
       <section id="educationSection">
         <h3>Education</h3>
         <ul id="accordionEducation">

@@ -4,35 +4,11 @@ import { Date, RichText, RichTextBlock } from 'prismic-reactjs';
 import CSS from 'csstype';
 
 import Layout from '../components/layout';
+import { accentColor, articleBgColor } from '../styles/colors';
 
-interface QueryData {
-  allPrismicBlogPost: {
-    edges: {
-      node: {
-        id: string,
-        data: {
-          title: {
-            raw: RichTextBlock[]
-          },
-          content: {
-            text: string
-          },
-          datetime: string,
-          image: {
-            fluid: {
-              src: string
-            }
-          }
-        },
-        uid: string
-      }
-    }[]
-  }
-}
-
-export default function Blog({ data }: { data: QueryData }) {
+export default function Blog({ data }: { data: PrismicBlogPostData }) {
   return (
-    <Layout>
+    <Layout currentPage='blog'>
       <div>
         <h2>Blog Posts</h2>
         <br />
@@ -46,13 +22,13 @@ export default function Blog({ data }: { data: QueryData }) {
                 <div style={titleRowStyle}>
                   <h3 style={titleStyle}>{RichText.asText(node.data.title.raw)}</h3>
                   <div style={dateStyle}>
-                    {Date(node.data.datetime).toLocaleString()}
+                    <span>{Date(node.data.datetime).toLocaleString()}</span>
                   </div>
                 </div>
                 <div style={excerptRowStyle}>
-                  <aside style={excerptStyle}>
-                    {node.data.content.text.substring(0, 50)}
-                  </aside>
+                  <i style={excerptStyle}>
+                    {node.data.content.text.substring(0, 50)}...
+                  </i>
                 </div>
               </div>
             </article>
@@ -94,8 +70,12 @@ export const query = graphql`
 const articleStyle: CSS.Properties = {
   display: 'flex',
   flexDirection: 'row',
-  marginBottom: '10',
+  marginBottom: '10px',
   alignItems: 'center',
+  backgroundColor: articleBgColor,
+  border: '1px solid ' + accentColor,
+  borderRadius: '5px',
+  padding: '20px'
 };
 const blogImageStyle: CSS.Properties = {
   flex: 1,
@@ -111,6 +91,7 @@ const titleRowStyle: CSS.Properties = {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
+  marginBottom: '5px'
 };
 const titleStyle: CSS.Properties = {
   flex: 1,

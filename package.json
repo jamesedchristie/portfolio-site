@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@fontsource/yantramanav": "^4.2.2",
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "gatsby": "^3.1.2",
     "gatsby-plugin-gatsby-cloud": "^2.1.0",
     "gatsby-plugin-sharp": "^3.2.0",

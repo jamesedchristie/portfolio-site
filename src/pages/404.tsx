@@ -1,27 +1,28 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import CSS from 'csstype';
 
 // styles
-const pageStyles = {
+const pageStyles: CSS.Properties = {
   color: "#232129",
   padding: "96px",
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
-const headingStyles = {
+const headingStyles: CSS.Properties = {
   marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
+  marginBottom: '64',
+  maxWidth: '320',
 }
 
-const paragraphStyles = {
-  marginBottom: 48,
+const paragraphStyles: CSS.Properties = {
+  marginBottom: '48',
 }
-const codeStyles = {
+const codeStyles: CSS.Properties = {
   color: "#8A6534",
-  padding: 4,
+  padding: '4',
   backgroundColor: "#FFF4DB",
   fontSize: "1.25rem",
-  borderRadius: 4,
+  borderRadius: '4',
 }
 
 // markup

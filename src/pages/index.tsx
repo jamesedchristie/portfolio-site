@@ -1,9 +1,9 @@
 import React from 'react';
 import Layout from '../components/layout';
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import { RichText, Date } from 'prismic-reactjs';
 
-function Home({ data }) {
+function Home({ data }: PageProps) {
   // console.log(data);
   return (
     <Layout>

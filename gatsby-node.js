@@ -47,6 +47,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
               text
             }
           }
+          openGraphImageUrl
           url
         }
       }`,

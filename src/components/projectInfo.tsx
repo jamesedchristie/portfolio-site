@@ -1,89 +1,45 @@
-import React, { ReactPropTypes } from 'react';
-import { graphql, Link, PageProps } from 'gatsby';
-import CSS from 'csstype';
-import { Flex } from '@theme-ui/components';
-import { accentColor, articleBgColor, buttonColor } from '../styles/colors';
+import React from 'react';
+import { Link } from 'gatsby';
+import { GithubRepo } from '../types/data';
 
 export default function ProjectInfo({ repo }: { repo: GithubRepo }) {
   return (
-    <article style={articleStyle}>
-      <div style={infoStyle}>
-        <div style={titleRowStyle}>
-          <h3 style={titleStyle}>{repo.name}</h3>
-          <div style={linkContainer}>
+    <article className="flex flex-row mb-10 p-5 bg-main-secondary rounded border border-main-accent shadow">
+      <div className="flex flex-col w-2/4 px-4 justify-center text-left">
+        <div className="flex align-middle mb-5">
+          <h3>{repo.name}</h3>
+        </div>
+        <i> Created at: {repo.createdAt}</i>
+        <p className="my-2">{repo.description}</p>
+        <div className='flex justify-between my-3'>
+          <div>
+            <Link
+              className="py-1 px-5 bg-main-interact rounded shadow"
+              to={`/projects/${repo.name}/`}
+            >
+              Read More...
+            </Link>
+          </div>
+          <span>or</span>
+          <div>
             <a
-              style={linkToCodeStyle}
+              className="py-1 px-5 bg-main-interact rounded shadow"
               href={repo.url}
               rel="noreferrer"
               target="_blank"
             >
-              Code
+              View Source
             </a>
           </div>
         </div>
-        <i style={dateStyle}> Created at: {repo.createdAt}</i>
-        <strong style={descriptionStyle}>{repo.description}</strong>
-        <div style={linkContainer}>
-          <Link style={linkReadmeStyle} to={`/projects/${repo.name}/`}>
-            Read More...
-          </Link>
-        </div>
       </div>
-      <div style={imageStyle}>
+      <div className='w-2/4 flex justify-center max-h-60'>
         <img
           src={repo.openGraphImageUrl}
-          alt={repo.name + '-image'}
-          width="100%"
+          alt={repo.name + '-image'}  
+          className='block'        
         />
       </div>
     </article>
   );
 }
-
-const articleStyle: CSS.Properties = {
-  display: 'flex',
-  flexDirection: 'row',
-  marginBottom: '40px',
-  padding: '20px',
-  backgroundColor: articleBgColor,
-  borderRadius: '5px',
-  border: '1px solid tan',
-};
-const infoStyle: CSS.Properties = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-};
-const titleRowStyle: CSS.Properties = {
-  flex: 1,
-  display: 'flex',
-  alignItems: 'center',
-  marginBottom: '5px'
-};
-const titleStyle: CSS.Properties = {
-  flex: 1,
-};
-const linkContainer: CSS.Properties = {
-  flex: 1,
-};
-const linkToCodeStyle: CSS.Properties = {
-  padding: '5px 15px',
-  backgroundColor: buttonColor,
-  borderRadius: '5px',
-  boxShadow: '2px 2px 5px 1px #112222',
-};
-const descriptionStyle: CSS.Properties = {
-  flex: 3,
-};
-const dateStyle: CSS.Properties = {
-  flex: 1,
-};
-const linkReadmeStyle: CSS.Properties = {
-  padding: '5px 15px',
-  backgroundColor: buttonColor,
-  borderRadius: '5px',
-  boxShadow: '2px 2px 5px 1px #112222',
-};
-const imageStyle: CSS.Properties = {
-  flex: 1,
-};

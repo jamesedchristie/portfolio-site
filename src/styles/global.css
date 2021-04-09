@@ -1,39 +1,15 @@
-html {
-    background-color: rgb(27, 32, 32);
-    color: rgb(226, 226, 226);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-    margin: 0;
-}
-aside {
-    background-color: rgb(55, 59, 59);
-}
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-@media screen and (min-width: 481px) {
-    main {
-        padding: 0px 50px;
+@layer base {
+    h1 {
+        @apply text-4xl
     }
-}
-
-@media screen and (min-width: 769px) {
-    main {
-        padding: 0px 100px;
+    h2 {
+        @apply text-3xl
     }
-}
-
-@media screen and (min-width: 1025px) {
-    main {
-        padding: 0px 150px;
-    }
-}
-
-@media screen and (min-width: 1201px) {
-    main {
-        padding: 0px 200px;
+    h3 {
+        @apply text-2xl
     }
 }

@@ -7,7 +7,7 @@ export default function Projects({ data }: { data: GithubRepoData }) {
   // console.log(data);
   return (
     <Layout currentPage='projects'>
-      <h2>Projects</h2>
+      <h2 className='mb-5'>Projects</h2>
       {data.allGithubRepo.edges.map(({ node }) => <ProjectInfo repo={node.data.repository} />)}
     </Layout>
   );

@@ -1,3 +1,5 @@
+import { RichTextBlock } from 'prismic-reactjs';
+
 interface PrismicBlogPostData {
   allPrismicBlogPost: {
     edges: {
@@ -23,12 +25,33 @@ interface PrismicBlogPostData {
   };
 }
 
+interface BlogPost {
+  title: {
+    raw: RichTextBlock[];
+  };
+  content: {
+    raw: RichTextBlock[];
+  };
+  datetime: string;
+  image: {
+    fluid: {
+      src: string;
+    };
+  };
+}
+
+interface BlogPostQuery {
+  prismicBlogPost: {
+    data: BlogPost
+  };
+}
+
 interface GithubRepoData {
   allGithubRepo: {
     edges: {
       node: {
         data: {
-          repository: GithubRepo
+          repository: GithubRepo;
         };
         childReadme: {
           childMarkdownRemark: {
@@ -41,9 +64,15 @@ interface GithubRepoData {
 }
 
 interface GithubRepo {
-    createdAt: string,
-    name: string,
-    url: string,
-    description: string,
-    openGraphImageUrl: string
+  createdAt: string;
+  name: string;
+  url: string;
+  description: string;
+  openGraphImageUrl: string;
+}
+
+interface ReadmeQuery {
+    markdownRemark: {
+      html: string
+    }
 }

@@ -1,32 +1,30 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { Date, RichText, RichTextBlock } from 'prismic-reactjs';
-import CSS from 'csstype';
+import { Date, RichText } from 'prismic-reactjs';
+import { PrismicBlogPostData } from '../types/data';
 
 import Layout from '../components/layout';
-import { accentColor, articleBgColor } from '../styles/colors';
 
 export default function Blog({ data }: { data: PrismicBlogPostData }) {
   return (
     <Layout currentPage='blog'>
       <div>
-        <h2>Blog Posts</h2>
-        <br />
+        <h2 className='mb-5'>Blog Posts</h2>
         {data.allPrismicBlogPost.edges.map(({ node }) => (
           <Link to={`/blog/${node.uid}`}>
-            <article style={articleStyle}>
-              <div style={blogImageStyle}>
+            <article className='bg-main-secondary flex flex-row mb-5 p-5 border border-main-accent shadow rounded '>
+              <div className='flex-none w-1/4'>
                 <img src={node.data.image.fluid.src} />
               </div>
-              <div style={blogTextStyle}>
-                <div style={titleRowStyle}>
-                  <h3 style={titleStyle}>{RichText.asText(node.data.title.raw)}</h3>
-                  <div style={dateStyle}>
+              <div className='flex flex-col flex-grow'>
+                <div className='flex-1 flex flex-row h-auto align-middle mb-2 text-left'>
+                  <h3 className='flex-1 m-0'>{RichText.asText(node.data.title.raw)}</h3>
+                  <div className='flex-1 text-right mr-5'>
                     <span>{Date(node.data.datetime).toLocaleString()}</span>
                   </div>
                 </div>
-                <div style={excerptRowStyle}>
-                  <i style={excerptStyle}>
+                <div className='flex-1 align-middle text-left'>
+                  <i>
                     {node.data.content.text.substring(0, 50)}...
                   </i>
                 </div>
@@ -67,45 +65,45 @@ export const query = graphql`
 `;
 
 
-const articleStyle: CSS.Properties = {
-  display: 'flex',
-  flexDirection: 'row',
-  marginBottom: '10px',
-  alignItems: 'center',
-  backgroundColor: articleBgColor,
-  border: '1px solid ' + accentColor,
-  borderRadius: '5px',
-  padding: '20px'
-};
-const blogImageStyle: CSS.Properties = {
-  flex: 1,
-};
-const blogTextStyle: CSS.Properties = {
-  flex: 3,
-  display: 'flex',
-  flexDirection: 'column',
-};
-const titleRowStyle: CSS.Properties = {
-  flex: 1,
-  height: 'auto',
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  marginBottom: '5px'
-};
-const titleStyle: CSS.Properties = {
-  flex: 1,
-  margin: 0
-};
-const dateStyle: CSS.Properties = {
-  flex: 1,
-  textAlign: 'center',
-};
-const excerptRowStyle: CSS.Properties = {
-  flex: 1,
-  alignItems: 'center'
-};
-const excerptStyle: CSS.Properties = {
+// const articleStyle: CSS.Properties = {
+//   display: 'flex',
+//   flexDirection: 'row',
+//   marginBottom: '10px',
+//   alignItems: 'center',
+//   backgroundColor: articleBgColor,
+//   border: '1px solid ' + accentColor,
+//   borderRadius: '5px',
+//   padding: '20px'
+// };
+// const blogImageStyle: CSS.Properties = {
+//   flex: 1,
+// };
+// const blogTextStyle: CSS.Properties = {
+//   flex: 3,
+//   display: 'flex',
+//   flexDirection: 'column',
+// };
+// const titleRowStyle: CSS.Properties = {
+//   flex: 1,
+//   height: 'auto',
+//   display: 'flex',
+//   flexDirection: 'row',
+//   alignItems: 'center',
+//   marginBottom: '5px'
+// };
+// const titleStyle: CSS.Properties = {
+//   flex: 1,
+//   margin: 0
+// };
+// const dateStyle: CSS.Properties = {
+//   flex: 1,
+//   textAlign: 'center',
+// };
+// const excerptRowStyle: CSS.Properties = {
+//   flex: 1,
+//   alignItems: 'center'
+// };
+// const excerptStyle: CSS.Properties = {
   
-}
+// }
 

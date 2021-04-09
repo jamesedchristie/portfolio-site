@@ -6,9 +6,9 @@ import { RichText, Date } from 'prismic-reactjs';
 function Home({ data }: PageProps) {
   // console.log(data);
   return (
-    <Layout>
+    <Layout currentPage='index'>
       <div>
-        <h2>Home</h2>
+        <h2 className='mb-5'>Home</h2>
         <br />
       </div>
     </Layout>

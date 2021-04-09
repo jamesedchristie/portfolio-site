@@ -1,14 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
+import { ReadmeQuery } from '../types/data';
 
-export default function ReadMe({ data }) {
-  const readme = data.markdownRemark;
-  console.log(readme);
+export default function ReadMe({ data }: { data: ReadmeQuery }) {
+  const html: string = data.markdownRemark.html;
   return (
-    <Layout>
+    <Layout currentPage='projects'>
       <div>
-        <div dangerouslySetInnerHTML={{ __html: readme.html }} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </Layout>
   );

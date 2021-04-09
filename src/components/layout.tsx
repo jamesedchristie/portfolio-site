@@ -14,17 +14,27 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-const pages: string[] = ['About', 'Blog', 'Projects'];
+const pages: string[] = ['Index', 'About', 'Blog', 'Projects'];
 
 export default function Layout({ currentPage, children }: LayoutProps) {
   return (
-    <div style={bodyStyle}>
-      <header style={headerStyle}>
-        <h2>James Christie</h2>
-        <h3>Full Stack Developer</h3>
-        <nav style={navStyle}>
+    <div
+      style={{ fontFamily: 'Yantramanav' }}
+      className="min-h-screen flex flex-col"
+    >
+      <header className="text-center bg-layout-primary p-1 border-b-2 border-layout-secondary flex-none shadow-light">
+        <h1 className='md:mt-10'>James Christie</h1>
+        <h3 className='md:mt-5'>Full Stack Developer</h3>
+        <nav className="flex justify-center mt-12">
           {pages.map((p) => (
-            <Link style={p.toLowerCase() === currentPage ? navLinkActiveStyle : navLinkStyle } to={`/${p.toLowerCase()}/`}>
+            <Link
+              className={
+                p.toLowerCase() === currentPage
+                  ? 'block text-2xl mx-5 flex-initial font-bold text-gray-500'
+                  : 'block text-2xl mx-5 flex-initial font-bold'
+              }
+              to={p === 'Index' ? '/' : `/${p.toLowerCase()}/`}
+            >
               {p}
             </Link>
           ))}
@@ -39,24 +49,29 @@ export default function Layout({ currentPage, children }: LayoutProps) {
           </Link> */}
         </nav>
       </header>
-      <main>{children}</main>
-      <footer style={footerStyle}>
-        <p style={socialStyle}>
+      <main className="bg-main-primary text-center md:px-56 py-5 flex-auto">
+        {children}
+      </main>
+      <footer className="bg-layout-primary pt-3 pb-5 flex-none border-t-2 border-layout-secondary dark:border-blue-900">
+        <p className="flex flex-row justify-center m-0 mb-2">
           <Link
-            style={socialLinkStyle}
+            className="block flex-initial mx-5"
             to="https://twitter.com/jamesedchristie"
           >
-            <img src={twitterLogo} height="30px" />
+            <img src={twitterLogo} className='h-6' />
           </Link>
-          <Link style={socialLinkStyle} to="https://github.com/jamesedchristie">
-            <img src={githubLogo} height="30px" />
+          <Link
+            className="block flex-initial mx-5"
+            to="https://github.com/jamesedchristie"
+          >
+            <img src={githubLogo} className='h-6' />
           </Link>
         </p>
-        <p style={footerTagStyle}>
+        <p className="flex justify-center align-middle text-center m-0">
           <span>Made with </span>
-          <img src={gatsbyLogo} height="30px" style={{ margin: '0px 5px' }} />
+          <img src={gatsbyLogo} className='h-6 mx-1' />
           <span> Gatsby and </span>
-          <img src={prismicLogo} height="30px" style={{ margin: '0px 5px' }} />
+          <img src={prismicLogo} className='h-6 mx-1' />
           <span> Prismic</span>
         </p>
       </footer>
@@ -64,64 +79,64 @@ export default function Layout({ currentPage, children }: LayoutProps) {
   );
 }
 
-const bodyStyle: CSS.Properties = {
-  fontFamily: 'Yantramanav',
-};
-const headerStyle: CSS.Properties = {
-  backgroundColor: bgColor,
-  textAlign: 'center',
-  padding: '10px 10px',
-  borderBottom: '1px solid ' + accentColor
-};
-const navStyle: CSS.Properties = {
-  display: 'flex',
-  justifyContent: 'center',
-  marginTop: '50px',
-};
-const navLinkStyle: CSS.Properties = {
-  display: 'block',
-  margin: '0px 20px',
-  flex: 'initial',
-  fontWeight: 'bold',
-  fontSize: '24px',
-  textDecoration: 'none',
-  color: 'inherit',
-};
-const navLinkActiveStyle: CSS.Properties = {
-  display: 'block',
-  margin: '0px 20px',
-  flex: 'initial',
-  fontWeight: 'bold',
-  fontSize: '24px',
-  textDecoration: 'none',
-  color: 'grey',
-};
-const mainStyle: CSS.Properties = {
-  margin: '3rem',
-};
-const footerStyle: CSS.Properties = {
-  backgroundColor: bgColor,
-  padding: '10px 0px',
-  width: '100%',
-};
-const socialStyle: CSS.Properties = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  margin: 0,
-  marginBottom: '5px',
-};
-const socialLinkStyle: CSS.Properties = {
-  display: 'block',
-  margin: '0px 20px',
-  flex: 'initial',
-  textDecoration: 'none',
-  color: 'inherit',
-};
-const footerTagStyle: CSS.Properties = {
-  textAlign: 'center',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  margin: 0,
-};
+// const bodyStyle: CSS.Properties = {
+//   fontFamily: 'Yantramanav',
+// };
+// const headerStyle: CSS.Properties = {
+//   backgroundColor: bgColor,
+//   textAlign: 'center',
+//   padding: '10px 10px',
+//   borderBottom: '1px solid ' + accentColor
+// };
+// const navStyle: CSS.Properties = {
+//   display: 'flex',
+//   justifyContent: 'center',
+//   marginTop: '50px',
+// };
+// const navLinkStyle: CSS.Properties = {
+//   display: 'block',
+//   margin: '0px 20px',
+//   flex: 'initial',
+//   fontWeight: 'bold',
+//   fontSize: '24px',
+//   textDecoration: 'none',
+//   color: 'inherit',
+// };
+// const navLinkActiveStyle: CSS.Properties = {
+//   display: 'block',
+//   margin: '0px 20px',
+//   flex: 'initial',
+//   fontWeight: 'bold',
+//   fontSize: '24px',
+//   textDecoration: 'none',
+//   color: 'grey',
+// };
+// const mainStyle: CSS.Properties = {
+//   margin: '3rem',
+// };
+// const footerStyle: CSS.Properties = {
+//   backgroundColor: bgColor,
+//   padding: '10px 0px',
+//   width: '100%',
+// };
+// const socialStyle: CSS.Properties = {
+//   display: 'flex',
+//   flexDirection: 'row',
+//   justifyContent: 'center',
+//   margin: 0,
+//   marginBottom: '5px',
+// };
+// const socialLinkStyle: CSS.Properties = {
+//   display: 'block',
+//   margin: '0px 20px',
+//   flex: 'initial',
+//   textDecoration: 'none',
+//   color: 'inherit',
+// };
+// const footerTagStyle: CSS.Properties = {
+//   textAlign: 'center',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   margin: 0,
+// };

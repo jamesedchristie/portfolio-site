@@ -8,6 +8,7 @@ module.exports = {
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-transformer-remark',
       options: {

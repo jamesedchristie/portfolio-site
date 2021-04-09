@@ -38,6 +38,7 @@ const NotFoundPage = () => {
         </span>{" "}
         we couldn’t find what you were looking for.
         <br />
+        {/* @ts-ignore */}
         {process.env.NODE_ENV === "development" ? (
           <>
             <br />

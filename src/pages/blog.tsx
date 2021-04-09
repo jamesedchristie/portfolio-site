@@ -1,9 +1,8 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { Date, RichText } from 'prismic-reactjs';
+import { graphql } from 'gatsby';
 import { PrismicBlogPostData } from '../types/data';
 
-import Layout from '../components/layout';
+import { Layout, BlogPostInfo } from '../components';
 
 export default function Blog({ data }: { data: PrismicBlogPostData }) {
   return (
@@ -11,26 +10,33 @@ export default function Blog({ data }: { data: PrismicBlogPostData }) {
       <div>
         <h2 className='mb-5'>Blog Posts</h2>
         {data.allPrismicBlogPost.edges.map(({ node }) => (
-          <Link to={`/blog/${node.uid}`}>
-            <article className='bg-main-secondary flex flex-row mb-5 p-5 border border-main-accent shadow rounded '>
-              <div className='flex-none w-1/4'>
-                <img src={node.data.image.fluid.src} />
-              </div>
-              <div className='flex flex-col flex-grow'>
-                <div className='flex-1 flex flex-row h-auto align-middle mb-2 text-left'>
-                  <h3 className='flex-1 m-0'>{RichText.asText(node.data.title.raw)}</h3>
-                  <div className='flex-1 text-right mr-5'>
-                    <span>{Date(node.data.datetime).toLocaleString()}</span>
-                  </div>
-                </div>
-                <div className='flex-1 align-middle text-left'>
-                  <i>
-                    {node.data.content.text.substring(0, 50)}...
-                  </i>
-                </div>
-              </div>
-            </article>
-          </Link>
+          <BlogPostInfo
+            uid={node.uid}
+            image={node.data.image.fluid.src}
+            title={node.data.title.raw}
+            datetime={node.data.datetime}
+            excerpt={node.data.content.text.substring(0, 50)}
+          />
+          // <Link to={`/blog/${node.uid}`}>
+          //   <article className='bg-main-secondary flex flex-row mb-5 p-5 shadow-lg rounded '>
+          //     <div className='flex-none w-1/4'>
+          //       <img src={node.data.image.fluid.src} />
+          //     </div>
+          //     <div className='flex flex-col flex-grow'>
+          //       <div className='flex-1 flex flex-row h-auto align-middle mb-2 text-left'>
+          //         <h3 className='flex-1 m-0'>{RichText.asText(node.data.title.raw)}</h3>
+          //         <div className='flex-1 text-right mr-5'>
+          //           <span>{Date(node.data.datetime).toLocaleString()}</span>
+          //         </div>
+          //       </div>
+          //       <div className='flex-1 align-middle text-left'>
+          //         <i>
+          //           {node.data.content.text.substring(0, 50)}...
+          //         </i>
+          //       </div>
+          //     </div>
+          //   </article>
+          // </Link>
         ))}
       </div>
     </Layout>

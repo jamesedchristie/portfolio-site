@@ -1,7 +1,7 @@
-import { graphql, Link, PageProps } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
-import Layout from '../components/layout';
-import ProjectInfo from '../components/projectInfo';
+import { Layout, ProjectInfo } from '../components';
+import { GithubRepoData } from '../types/data';  
 
 export default function Projects({ data }: { data: GithubRepoData }) {
   // console.log(data);

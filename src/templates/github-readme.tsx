@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/layout';
+import { Layout } from '../components';
 import { ReadmeQuery } from '../types/data';
 
 export default function ReadMe({ data }: { data: ReadmeQuery }) {

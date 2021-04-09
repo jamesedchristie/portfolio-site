@@ -1,6 +1,6 @@
 import { RichTextBlock } from 'prismic-reactjs';
 
-interface PrismicBlogPostData {
+export interface PrismicBlogPostData {
   allPrismicBlogPost: {
     edges: {
       node: {
@@ -25,7 +25,7 @@ interface PrismicBlogPostData {
   };
 }
 
-interface BlogPost {
+export interface BlogPost {
   title: {
     raw: RichTextBlock[];
   };
@@ -40,13 +40,13 @@ interface BlogPost {
   };
 }
 
-interface BlogPostQuery {
+export interface BlogPostQuery {
   prismicBlogPost: {
     data: BlogPost
   };
 }
 
-interface GithubRepoData {
+export interface GithubRepoData {
   allGithubRepo: {
     edges: {
       node: {
@@ -63,7 +63,7 @@ interface GithubRepoData {
   };
 }
 
-interface GithubRepo {
+export interface GithubRepo {
   createdAt: string;
   name: string;
   url: string;
@@ -71,7 +71,7 @@ interface GithubRepo {
   openGraphImageUrl: string;
 }
 
-interface ReadmeQuery {
+export interface ReadmeQuery {
     markdownRemark: {
       html: string
     }

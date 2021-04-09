@@ -16,13 +16,13 @@ type LayoutProps = {
 
 const pages: string[] = ['Index', 'About', 'Blog', 'Projects'];
 
-export default function Layout({ currentPage, children }: LayoutProps) {
+export function Layout({ currentPage, children }: LayoutProps) {
   return (
     <div
       style={{ fontFamily: 'Yantramanav' }}
       className="min-h-screen flex flex-col"
     >
-      <header className="text-center bg-layout-primary p-1 border-b-2 border-layout-secondary flex-none shadow-light">
+      <header className="text-center bg-layout-primary p-1 flex-none shadow">
         <h1 className='md:mt-10'>James Christie</h1>
         <h3 className='md:mt-5'>Full Stack Developer</h3>
         <nav className="flex justify-center mt-12">
@@ -30,8 +30,8 @@ export default function Layout({ currentPage, children }: LayoutProps) {
             <Link
               className={
                 p.toLowerCase() === currentPage
-                  ? 'block text-2xl mx-5 flex-initial font-bold text-gray-500'
-                  : 'block text-2xl mx-5 flex-initial font-bold'
+                  ? 'font-mono block text-2xl mx-5 flex-initial font-bold text-link-active hover:text-link-hover'
+                  : 'font-mono block text-2xl mx-5 flex-initial font-bold text-link-color hover:text-link-hover'
               }
               to={p === 'Index' ? '/' : `/${p.toLowerCase()}/`}
             >
@@ -52,7 +52,7 @@ export default function Layout({ currentPage, children }: LayoutProps) {
       <main className="bg-main-primary text-center md:px-56 py-5 flex-auto">
         {children}
       </main>
-      <footer className="bg-layout-primary pt-3 pb-5 flex-none border-t-2 border-layout-secondary dark:border-blue-900">
+      <footer className="bg-layout-primary pt-3 pb-5 flex-none">
         <p className="flex flex-row justify-center m-0 mb-2">
           <Link
             className="block flex-initial mx-5"

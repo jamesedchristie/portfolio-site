@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layout';
+import { Layout } from '../components';
 import { graphql } from 'gatsby';
 import { Date, RichText } from 'prismic-reactjs';
 import { BlogPostQuery } from '../types/data';

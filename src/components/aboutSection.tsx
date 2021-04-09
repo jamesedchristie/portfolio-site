@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AboutSection({
+export function AboutSection({
   children, title
 }: {
   children: React.ReactNode,
@@ -8,7 +8,7 @@ export default function AboutSection({
 }) {
 
   return (
-    <section className="text-left bg-main-secondary border border-main-accent rounded shadow p-5 mb-10">
+    <section className="text-left bg-main-secondary rounded shadow-navy p-5 mb-10">
       <h3 className="mb-3">{title}</h3>
       {children}
     </section>

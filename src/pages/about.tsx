@@ -6,14 +6,13 @@ export default function About() {
     <Layout currentPage="about">
       <h2 className="mb-5">About Me</h2>
       <AboutSection title="Education">
-        <ul id="accordionEducation">
           <EducationItem
             qualification="Diploma - Software Development"
             institute="TAFE NSW - Petersham"
             year="2021"
           >
             A full-time course covering .NET Core, EF Core, MVC, React, React
-            Native, Testing, Validation and Project Moanagement.
+            Native, Testing, Validation and Project Management.
           </EducationItem>
           <EducationItem
             qualification="Certificate IV - Programming"
@@ -33,7 +32,7 @@ export default function About() {
             fundamentals, data structures and algorithms, coding in C and
             Python, databases and SQL, as well as units on Web Development with
             Python/Flask/Django, App Development with Java/Android Studio, and
-            Games Developement with Lua/Love2D.
+            Games Development with Lua/Love2D.
           </EducationItem>
           <EducationItem
             qualification="PhD - History of Science"
@@ -61,10 +60,8 @@ export default function About() {
             Medieval Studies and Studies in Religion, taking a particular
             interest in intellectual history.
           </EducationItem>
-        </ul>
       </AboutSection>
       <AboutSection title="Work">
-        <ul>
           <WorkItem
             role="Research Assistant"
             company="The University of Sydney"
@@ -83,11 +80,8 @@ export default function About() {
             looking for people skills and the ability to work under pressure,
             look for a hospo background!
           </WorkItem>
-        </ul>
       </AboutSection>
       <AboutSection title="Interests">
-        <p className='mb-3'>My interests include...</p>
-        <ul>
           <Interest>
             Reading. Usually fiction these days. Catching up for the years spent
             reading 17th-century astronomical treatises
@@ -96,7 +90,6 @@ export default function About() {
           <Interest>Cricket in the summer (just social, I'm not very good)</Interest>
           <Interest>Swimming in the ocean</Interest>
           <Interest>Figuring out how to make cool stuff on computers</Interest>
-        </ul>
       </AboutSection>
     </Layout>
   );

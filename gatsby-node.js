@@ -13,24 +13,28 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
 
   const reposToFetch = [
     {
-      'owner': personal,
-      'repo': 'ships-log',
+      'owner': xrl,
+      'repo': 'xrlcoach.github.io',
     },
     {
       'owner': personal,
-      'repo': 'histastrobio',
+      'repo': 'order-management-system',
     },
     {
       'owner': personal,
-      'repo': 'portfolio-site',
+      'repo': 'vue-gram',
     },
     {
       'owner': personal,
-      'repo': 'cs50',
+      'repo': 'contacts-app',
     }, 
     {
-      'owner': xrl,
-      'repo': 'xrlcoach.github.io'
+      'owner': personal,
+      'repo': 'ships-log',
+    }, 
+    {
+      'owner': personal,
+      'repo': 'cs50'
     }
   ];
   

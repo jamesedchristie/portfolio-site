@@ -3,8 +3,7 @@ import React from 'react';
 import { Layout, ProjectInfo } from '../components';
 import { GithubRepoData } from '../types/data';  
 
-export default function Projects({ data }: { data: GithubRepoData }) {
-  // console.log(data);
+export default function Projects({ data }: { data: GithubRepoData }) {  
   return (
     <Layout currentPage='projects'>
       <h2 className='mb-5'>Projects</h2>

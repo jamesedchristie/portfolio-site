@@ -17,7 +17,7 @@ function Home({ data }: PageProps) {
         <h2 className='mb-5'>Home</h2>
         <div className='flex flex-grow text-center'>
           <p className='mt-10'>
-            Hi, my name is James and I'm a full stack developer. Previously I studied the history of science for about 10 years. If either of theories
+            Hi, my name is James and I'm a full stack developer. Previously I studied the history of science for about 10 years. If either of these
             things interests you, please get in touch! You can have a look at my timeline, qualifications and interests in the <Link className="font-mono font-bold hover:text-link-hover" to="/about/">About</Link> section, or dive straight into
             some of my <Link className="font-mono font-bold hover:text-link-hover" to="/projects/">Projects</Link>.
           </p>

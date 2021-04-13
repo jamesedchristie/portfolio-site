@@ -1,11 +1,18 @@
 import React from 'react';
 import { Layout } from '../components';
 import { graphql, Link, PageProps } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import favicon from '../images/favicon.ico';
 
 function Home({ data }: PageProps) {
   // console.log(data);
   return (
     <Layout currentPage='index'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>JamesEdChristie</title>
+        <link rel="icon" href={favicon} />
+      </Helmet>
       <div className="flex-grow flex flex-col">
         <h2 className='mb-5'>Home</h2>
         <div className='flex flex-grow text-center'>

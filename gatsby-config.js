@@ -5,6 +5,7 @@ module.exports = {
     title: 'James Portfolio',
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',

@@ -1,9 +1,16 @@
 import React from 'react';
 import { Layout, AboutSection, EducationItem, WorkItem, Interest } from '../components';
+import { Helmet } from 'react-helmet';
+import favicon from '../images/favicon.ico';
 
 export default function About() {
   return (
     <Layout currentPage="about">
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>About</title>
+        <link rel="icon" href={favicon} />
+      </Helmet>
       <h2 className="mb-5">About Me</h2>
       <AboutSection title="Education">
           <EducationItem

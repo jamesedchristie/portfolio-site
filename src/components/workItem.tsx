@@ -12,7 +12,7 @@ export function WorkItem({
   children: React.ReactNode;
 }) {
   return (
-    <li className="py-4 border-b-2 border-starwars-red">
+    <li className="py-4">
       <div className="flex flex-row flex-wrap justify-between md:justify-start mb-1">
         <h4 className="mr-4 my-auto">{role}</h4>
         <strong className="mr-4 my-auto">{company}</strong>

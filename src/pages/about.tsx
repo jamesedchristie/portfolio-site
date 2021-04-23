@@ -11,7 +11,6 @@ export default function About() {
         <title>About</title>
         <link rel="icon" href={favicon} />
       </Helmet>
-      <h2 className="mb-5">About Me</h2>
       <AboutSection title="Education">
           <EducationItem
             qualification="Diploma - Software Development"
@@ -90,11 +89,10 @@ export default function About() {
       </AboutSection>
       <AboutSection title="Interests">
           <Interest>
-            Reading. Usually fiction these days. Catching up for the years spent
-            reading 17th-century astronomical treatises
+            Reading. Usually fiction
           </Interest>
           <Interest>All things sci-fi</Interest>
-          <Interest>Cricket in the summer (just social, I'm not very good)</Interest>
+          <Interest>Cricket in the summer</Interest>
           <Interest>Swimming in the ocean</Interest>
           <Interest>Figuring out how to make cool stuff on computers</Interest>
       </AboutSection>

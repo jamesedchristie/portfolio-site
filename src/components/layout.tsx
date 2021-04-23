@@ -9,20 +9,22 @@ import twitterLogo from '../images/twitter.svg';
 import linkedInLogo from '../images/linkedin.png';
 import tailwindLogo from '../images/tailwind.svg';
 import background from '../images/earth_glow.png';
+import { Planet } from './planet';
+//@ts-ignore
+import { blue } from 'tailwindcss/colors.js';
 
 type LayoutProps = {
   currentPage: string;
   children: ReactNode;
 };
 
-const pages: string[] = ['Index', 'About', 'Projects'];
+const pages: string[] = ['Home', 'About', 'Projects'];
 
 export function Layout({ currentPage, children }: LayoutProps) {
-
   const [mouseOver, setMouseOver] = useState({
-    'twitter': false,
-    'github': false,
-    'linkedIn': false,
+    twitter: false,
+    github: false,
+    linkedIn: false,
   });
 
   const toggleMouseOver = (logoName: string) => {
@@ -41,7 +43,7 @@ export function Layout({ currentPage, children }: LayoutProps) {
         break;
     }
     setMouseOver(copy);
-  }
+  };
 
   return (
     <div
@@ -73,7 +75,9 @@ export function Layout({ currentPage, children }: LayoutProps) {
           <div className="flex flex-initial md:w-1/4 justify-center">
             <div className="flex flex-row justify-center pt-5 m-0 w-full">
               <Link
-                className={`block mx-5 w-12 h-12 ${mouseOver.twitter ? 'animate-bounce' : ''}`}
+                className={`block mx-5 w-12 h-12 ${
+                  mouseOver.twitter ? 'animate-bounce' : ''
+                }`}
                 to="https://twitter.com/jamesedchristie"
                 onMouseOver={() => toggleMouseOver('twitter')}
                 onMouseLeave={() => toggleMouseOver('twitter')}
@@ -81,7 +85,9 @@ export function Layout({ currentPage, children }: LayoutProps) {
                 <img src={twitterLogo} className="h-full w-full" />
               </Link>
               <Link
-                className={`block mx-5 w-12 h-12 ${mouseOver.github ? 'animate-bounce' : ''}`}
+                className={`block mx-5 w-12 h-12 ${
+                  mouseOver.github ? 'animate-bounce' : ''
+                }`}
                 to="https://github.com/jamesedchristie"
                 onMouseOver={() => toggleMouseOver('github')}
                 onMouseLeave={() => toggleMouseOver('github')}
@@ -89,7 +95,9 @@ export function Layout({ currentPage, children }: LayoutProps) {
                 <img src={githubLogo} className="h-full w-full" />
               </Link>
               <Link
-                className={`block mx-5 w-12 h-12 ${mouseOver.linkedIn ? 'animate-bounce' : ''}`}
+                className={`block mx-5 w-12 h-12 ${
+                  mouseOver.linkedIn ? 'animate-bounce' : ''
+                }`}
                 to="https://www.linkedin.com/in/jamesedchristie/"
                 onMouseOver={() => toggleMouseOver('linkedIn')}
                 onMouseLeave={() => toggleMouseOver('linkedIn')}
@@ -99,7 +107,8 @@ export function Layout({ currentPage, children }: LayoutProps) {
             </div>
           </div>
         </div>
-        <nav className="flex justify-center align-middle mt-4">
+
+        <nav className="flex flex-row justify-center mt-4 mb-4">
           {pages.map((p) => (
             <Link
               className={
@@ -107,23 +116,14 @@ export function Layout({ currentPage, children }: LayoutProps) {
                   ? 'font-mono block text-2xl mx-5 flex-initial font-bold text-link-active hover:text-link-hover'
                   : 'font-mono block text-2xl mx-5 flex-initial font-bold text-link-color hover:text-link-hover'
               }
-              to={p === 'Index' ? '/' : `/${p.toLowerCase()}/`}
+              to={p === 'Home' ? '/' : `/${p.toLowerCase()}/`}
             >
               {p}
             </Link>
-          ))}
-          {/* <Link style={navLinkStyle} to="/about/">
-            About
-          </Link>
-          <Link style={navLinkStyle} to="/blog/">
-            Blog
-          </Link>
-          <Link style={navLinkStyle} to="/projects/">
-            Projects
-          </Link> */}
+          ))}          
         </nav>
       </header>
-      <main className="bg-main-primary text-center lg:px-56 md:px-32 xl:px-72 sm:px-14 px-2 py-5 flex-auto text-xl flex flex-col">
+      <main className="bg-main-primary text-center px-3 md:px-32 lg:px-56 xl:px-72 sm:px-14 py-5 flex-auto text-xl flex flex-col pt-10">
         {children}
       </main>
       <footer className="bg-layout-primary pt-3 pb-5 flex-none text-layout-text overflow-hidden font-mono font-bold">
@@ -134,7 +134,7 @@ export function Layout({ currentPage, children }: LayoutProps) {
           <div className="flex-auto flex flex-row justify-evenly md:justify-center">
             <div className="flex-auto w-2/5 text-right overflow-hidden">
               <div>
-              <p id="gatsbyText">Gatsby</p>
+                <p id="gatsbyText">Gatsby</p>
               </div>
             </div>
             <div className="grid grid-cols-3 md:w-1/5">

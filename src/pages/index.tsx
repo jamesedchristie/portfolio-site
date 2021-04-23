@@ -7,16 +7,15 @@ import favicon from '../images/favicon.ico';
 function Home({ data }: PageProps) {
   // console.log(data);
   return (
-    <Layout currentPage="index">
+    <Layout currentPage="home">
       <Helmet>
         <meta charSet="utf-8" />
         <title>JamesEdChristie</title>
         <link rel="icon" href={favicon} />
       </Helmet>
       <div className="flex-grow flex flex-col">
-        <h2 className="mb-5">Home</h2>
         <div className="flex flex-col md:flex-row flex-grow text-center md:pb-32">
-          <div className="flex md:w-1/4 box-border md:mr-10 mb-5 lg:w-1/6 md:m-0 px-48 md:px-0">
+          <div className="flex md:w-1/4 box-border md:mr-10 mb-5 lg:w-1/6 md:m-0 px-20 md:px-0">
             <img src="https://res.cloudinary.com/dkj7bctqg/image/upload/c_scale,h_456/v1618354626/Projects/Portfolio/james-drawn_g45kgn.png" alt="Stylised picture of yours truly" className="mx-auto my-auto" />
           </div>
           <div className="flex md:w-3/4">

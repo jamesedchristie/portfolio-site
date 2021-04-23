@@ -13,7 +13,6 @@ export default function Projects({ data }: { data: GithubRepoData }) {
         <title>Projects</title>
         <link rel="icon" href={favicon} />
       </Helmet>
-      <h2 className='mb-5'>Projects</h2>
       {data.allGithubRepo.edges.map(({ node }) => <ProjectInfo repo={node.data.repository} />)}
     </Layout>
   );

@@ -22,6 +22,10 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     },
     {
       'owner': personal,
+      'repo': 'portfolio-site'
+    }
+    {
+      'owner': personal,
       'repo': 'order-management-system',
     },
     {
